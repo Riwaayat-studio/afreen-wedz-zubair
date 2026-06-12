@@ -9,7 +9,7 @@ let audioCtx = null;
 
 function forceAudioPlay() {
     if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)():
     }
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
