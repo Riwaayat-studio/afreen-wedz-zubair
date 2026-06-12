@@ -1,0 +1,125 @@
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
+html { scroll-behavior: smooth; }
+body { background-color: #021E17; color: #FAF6EE; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+
+/* 🕌 FIXED: ADVANCED MUGHAL ARCHITECTURE DESIGN PATTERN INSIDE THE GREEN AURA BG */
+.luxury-aura-bg { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    pointer-events: none; 
+    z-index: 1; 
+    background-color: #01140F;
+    /* Custom SVG Mughal Islamic Arch Mesh Blueprint Pattern */
+    background-image: radial-gradient(circle at center, rgba(3,54,44,0.4) 20%, #010E0A 95%), 
+                      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='90' viewBox='0 0 60 90'%3E%3Cpath d='M30 0 Q45 15 45 35 L45 90 M30 0 Q15 15 15 35 L15 90 M0 45 L60 45' stroke='rgba(212,175,55,0.06)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+    opacity: 0.95; 
+}
+
+.shahi-border-harness { position: fixed; top: 12px; left: 12px; right: 12px; bottom: 12px; border: 1px solid rgba(212, 175, 55, 0.25); pointer-events: none; z-index: 15; }
+.shahi-border-harness::before { content: ""; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; border: 1px double rgba(212, 175, 55, 0.4); }
+
+/* FLOATING AUDIO LAYER SWITCH CONTROLLER */
+.music-control { position: fixed; bottom: 25px; right: 25px; background: #032A20; border: 2px solid #D4AF37; border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.7); font-size: 1.3rem; color: #D4AF37; z-index: 100000; display: none; }
+.music-control::before { content: "⏸"; }
+.music-playing.music-control::before { content: "🎵"; }
+
+/* STAGE 1: REAL 3D SPLIT DOOR OPENING REVEAL SYSTEMS */
+#envelope-gate-stage { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 99999; perspective: 2500px; display: flex; overflow: hidden; background: #010F0B; pointer-events: auto; }
+.envelope-door-wing { width: 50%; height: 100vh; background-color: #02241C; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='90' viewBox='0 0 60 90'%3E%3Cpath d='M30 0 Q45 15 45 35 L45 90 M30 0 Q15 15 15 35 L15 90 M0 45 L60 45' stroke='rgba(212,175,55,0.04)' stroke-width='1' fill='none'/%3E%3C/svg%3E"); position: absolute; top: 0; transition: transform 2.4s cubic-bezier(0.77, 0, 0.175, 1); border: 1px solid rgba(212, 175, 55, 0.15); transform-style: preserve-3d; pointer-events: none; }
+
+.wing-left-panel { left: 0; transform-origin: left center; border-right: 1px solid rgba(212, 175, 55, 0.35); }
+.wing-right-panel { right: 0; transform-origin: right center; border-left: 1px solid rgba(212, 175, 55, 0.35); }
+
+.seal-latch-zone { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10000000 !important; text-align: center; cursor: pointer; pointer-events: auto !important; -webkit-tap-highlight-color: transparent; padding: 45px; }
+.royal-wax-seal { width: 125px; height: 125px; background: radial-gradient(#ffe082, #b8932b, #543f03); border-radius: 50%; border: 3px double #FAF6EE; box-shadow: 0 25px 50px rgba(0,0,0,0.75), inset 0 0 15px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.royal-wax-seal::before { content: 'AZ'; font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #FAF6EE; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+.seal-tagline { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: #D4AF37; text-transform: uppercase; letter-spacing: 5px; margin-top: 25px; font-weight: 600; pointer-events: none; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+
+.envelope-opened .wing-left-panel { transform: rotateY(-135deg); box-shadow: 40px 0 75px rgba(0,0,0,0.6); }
+.envelope-opened .wing-right-panel { transform: rotateY(135deg); box-shadow: -40px 0 75px rgba(0,0,0,0.6); }
+.envelope-opened .seal-latch-zone { opacity: 0; transform: translate(-50%, -50%) scale(0.1); pointer-events: none; }
+
+.cinematic-light-flare { position: fixed; top:0; left:0; width:100%; height:100vh; background: radial-gradient(circle at center, #FFFDF0 10%, #D4AF37 60%, transparent 100%); opacity:0; z-index:99998; pointer-events:none; transition: opacity 0.5s cubic-bezier(0.1, 0.8, 0.3, 1); }
+
+/* STAGE 2: MAIN HIGH-END INTERFACE PORTAL */
+#main-canvas-portal { opacity: 0; display: none; transition: opacity 2s ease, transform 2s cubic-bezier(0.1, 0.8, 0.2, 1); width: 100%; position: relative; z-index: 10; transform: scale(0.96); }
+.portal-section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 20px; text-align: center; }
+
+.scroll-reveal-node { opacity: 0; filter: blur(12px); transform: translateY(60px); transition: all 1.8s cubic-bezier(0.22, 1, 0.36, 1); width: 100%; display: flex; flex-direction: column; align-items: center; }
+.scroll-reveal-node.activated { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+.arabic-header { font-family: 'Reem Kufi', sans-serif; font-size: 2.2rem; color: #D4AF37; margin-bottom: 25px; text-shadow: 0 0 15px rgba(212,175,55,0.4); }
+.royal-weds-title { font-family: 'Playfair Display', serif; font-size: 4.2rem; font-weight: 900; color: #FAF6EE; letter-spacing: 2px; text-transform: uppercase; line-height: 1.1; text-shadow: 0 5px 25px rgba(0,0,0,0.65); }
+.royal-weds-title .gold-gradient-txt { background: linear-gradient(to bottom, #fff6c3 0%, #d4af37 55%, #846513 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+.royal-weds-title span { font-style: italic; font-size: 1.8rem; font-weight: 400; color: #D4AF37; display: block; margin: 15px 0; text-transform: lowercase; -webkit-text-fill-color: initial; }
+.sub-tag-line { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 4px; color: #D4AF37; margin-top: 25px; line-height: 1.9; font-weight: 500; max-width: 500px; opacity: 0.9; }
+
+.mosque-backdrop-silhouette { width: 100%; max-width: 280px; height: 100px; margin-top: 35px; opacity: 0.25; }
+.mosque-svg-vector { width: 100%; height: 100%; }
+
+/* HARD REALISTIC MOSQUE MINARET TIMERS */
+.minaret-container-row { display: flex; justify-content: center; gap: 15px; margin-top: 75px; width: 100%; max-width: 540px; align-items: flex-end; }
+.minaret-tower-pillar { background: linear-gradient(to bottom, #02362c, #01140F); width: 22%; height: 260px; border: 1px solid rgba(212,175,55,0.35); border-radius: 45px 40px 10px 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 35px 2px 20px 2px; box-shadow: 0 25px 50px rgba(0,0,0,0.65); position: relative; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.minaret-tower-pillar::before { content: ""; position: absolute; top: -38px; left: 50%; transform: translateX(-50%); width: 44px; height: 40px; background: radial-gradient(circle at center, #fff7c2, #d4af37, #594203); clip-path: path('M22,0 C9,14 4,26 4,40 L40,40 C40,26 35,14 22,0 Z'); border: 1px solid #021E17; filter: drop-shadow(0px -5px 15px rgba(212,175,55,0.45)); }
+.minaret-tower-pillar:hover { transform: translateY(-8px); border-color: #D4AF37; box-shadow: 0 25px 50px rgba(212,175,55,0.25); }
+
+.clock-num-node { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: #FAF6EE; text-shadow: 0 0 15px rgba(212,175,55,0.35); }
+.clock-lbl-node { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #D4AF37; font-weight: 700; }
+
+/* DUAL CARD PANELS & RESPONSIVE GRID CONFIGURATIONS */
+.scratch-card-wrapper { background: #011612; border: 1px solid rgba(212,175,55,0.25); border-radius: 12px; width: 100%; max-width: 420px; padding: 25px; margin-bottom: 35px; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+.scratch-title-tag { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #D4AF37; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; border-left: 3px solid #D4AF37; padding-left: 10px; }
+.scratch-container-box { position: relative; width: 100%; height: 160px; border-radius: 8px; overflow: hidden; border: 1px dashed rgba(212,175,55,0.35); }
+.scratch-secret-base { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #02241C; display: flex; flex-direction: column; justify-content: center; padding: 20px; font-size: 0.9rem; line-height: 1.9; }
+.scratch-secret-base strong { color: #D4AF37; }
+.scratch-layer-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; touch-action: none; cursor: crosshair; }
+
+.family-layout { display: flex; gap: 20px; width: 100%; max-width: 550px; }
+.family-card { width: 50%; background: #011612; border: 1px solid rgba(212,175,55,0.2); border-radius: 8px; padding: 25px 15px; text-align: center; }
+.fam-role-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #D4AF37; margin-bottom: 8px; font-weight: 600; }
+.fam-main-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #FAF6EE; font-weight: 700; }
+.fam-parents-line { font-size: 0.85rem; opacity: 0.75; line-height: 1.7; margin-top: 10px; }
+
+.venue-card-box { width: 100%; max-width: 460px; background: #011612; border: 1px solid rgba(212,175,55,0.25); border-radius: 14px; padding: 30px 20px; text-align: center; margin-top: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+.venue-banner-mock { width: 100%; height: 140px; background: linear-gradient(135deg, #03362B, #01140F); border-radius: 8px; display: flex; justify-content: center; align-items: center; font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #D4AF37; font-weight: bold; border: 1px solid rgba(212, 175, 55, 0.15); margin-bottom: 20px; letter-spacing: 2px; }
+.venue-details-p { font-size: 0.85rem; line-height: 1.8; opacity: 0.85; max-width: 380px; margin: 0 auto 25px auto; }
+.venue-btn-row { display: flex; gap: 15px; justify-content: center; }
+.venue-action-btn { background: #02241C; border: 1px solid #D4AF37; color: #D4AF37; padding: 12px 28px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; border-radius: 30px; text-decoration: none; }
+
+/* RSVP DASHBOARD INTERFACE */
+.rsvp-form-master { width: 100%; max-width: 480px; background: #01110D; border: 1px solid rgba(212,175,55,0.35); border-radius: 14px; padding: 45px 25px; text-align: left; box-shadow: 0 25px 60px rgba(0,0,0,0.6); }
+.rsvp-section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; text-align: center; color: #D4AF37; letter-spacing: 3px; margin-bottom: 35px; text-transform: uppercase; border-bottom: 1px solid rgba(212,175,55,0.15); padding-bottom: 15px; }
+.form-ctrl-group { margin-bottom: 25px; }
+.form-ctrl-group label { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #D4AF37; margin-bottom: 8px; }
+.input-field-gold { width: 100%; padding: 16px; background: #011612; border: 1px solid rgba(212,175,55,0.25); border-radius: 6px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #FAF6EE; outline: none; }
+
+.selector-row-grid { display: flex; gap: 15px; }
+.selector-box-option { width: 50%; background: #011612; border: 1px solid rgba(212,175,55,0.2); padding: 15px; text-align: center; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: all 0.3s; color: rgba(250,246,238,0.7); display: flex; align-items: center; justify-content: center; gap: 10px; }
+.selector-box-option::before { content: ""; width: 14px; height: 14px; border: 2px solid rgba(212,175,55,0.4); border-radius: 50%; display: inline-block; }
+.selector-box-option.selected-active { border-color: #D4AF37; background: #02241C; color: #D4AF37; font-weight: 700; }
+.selector-box-option.selected-active::before { background: #D4AF37; border-color: #D4AF37; box-shadow: inset 0 0 0 2px #02241C; }
+
+.checkbox-custom-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 0.9rem; cursor: pointer; color: rgba(250,246,238,0.85); }
+.checkbox-custom-item input { accent-color: #D4AF37; width: 18px; height: 18px; }
+
+.persons-counter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.counter-number-node { width: 42px; height: 42px; border: 1px solid rgba(212,175,55,0.2); background: #011612; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; }
+.counter-number-node.active-num { background: #D4AF37; color: #021E17; font-weight: 700; border-color: #D4AF37; box-shadow: 0 5px 12px rgba(212,175,55,0.25); }
+
+.submit-btn-gold { width: 100%; background: linear-gradient(135deg, #ffe082, #d4af37, #997a2d); color: #021E17; padding: 16px; border: none; border-radius: 6px; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: bold; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; }
+.thankyou-heading { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: #D4AF37; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+
+@media (max-width: 480px) {
+    .royal-weds-title { font-size: 2.8rem; }
+    .minaret-container-row { gap: 6px; margin-top: 55px; }
+    .minaret-tower-pillar { height: 200px; padding: 25px 2px 15px 2px; }
+    .minaret-tower-pillar::before { width: 36px; height: 34px; top: -32px; }
+    .clock-num-node { font-size: 1.6rem; }
+    .clock-lbl-node { font-size: 0.55rem; letter-spacing: 1px; }
+    .family-layout { flex-direction: column; gap: 15px; }
+    .family-card { width: 100%; }
+                                      }
+  
