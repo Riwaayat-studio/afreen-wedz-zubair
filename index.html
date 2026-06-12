@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afreen Weds Zubair - Ultra Luxury Invitation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="royal-audio" loop>
+        <source src="wedding-music.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-control" id="music-btn" onclick="handleMusicControl()"></div>
+
+    <div class="luxury-aura-bg"></div>
+    <div class="shahi-border-harness"></div>
+
+    <div id="envelope-gate-stage">
+        <div class="envelope-3d-wrapper">
+            <div class="envelope-door-wing wing-left-panel"></div>
+            
+            <div class="seal-latch-zone" id="trigger-tap-node">
+                <div class="royal-wax-seal"></div>
+                <p class="seal-tagline">Tap To Open</p>
+            </div>
+            
+            <div class="envelope-door-wing wing-right-panel"></div>
+        </div>
+    </div>
+
+    <div id="main-canvas-portal">
+        
+        <div class="cinematic-light-flare" id="flare-node"></div>
+
+        <section class="portal-section">
+            <div class="scroll-reveal-node">
+                <p class="arabic-header">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+                <h1 class="royal-weds-title">
+                    <span class="gold-gradient-txt">Afreen</span> 
+                    <span>weds</span> 
+                    <span class="gold-gradient-txt">Zubair</span>
+                </h1>
+                <p class="sub-tag-line">Together with their families invite you to celebrate their wedding</p>
+                
+                <div class="mosque-backdrop-silhouette">
+                    <svg viewBox="0 0 100 40" class="mosque-svg-vector">
+                        <path d="M 0,40 L 0,35 Q 5,35 5,30 L 5,10 Q 7,5 10,10 L 10,35 Q 15,35 20,30 Q 25,20 35,20 Q 40,5 50,5 Q 60,5 65,20 Q 75,20 80,30 Q 85,35 90,35 L 90,10 Q 93,5 95,10 L 95,30 Q 95,35 100,35 L 100,40 Z" fill="#D4AF37"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section">
+            <div class="scroll-reveal-node">
+                <p class="sub-tag-line" style="margin-bottom: 50px; color: #FAF6EE;">Wedding Countdown</p>
+                
+                <div class="minaret-container-row">
+                    <div class="minaret-tower-pillar"><div class="clock-num-node" id="d-val">00</div><div class="clock-lbl-node">Days</div></div>
+                    <div class="minaret-tower-pillar"><div class="clock-num-node" id="h-val">00</div><div class="clock-lbl-node">Hrs</div></div>
+                    <div class="minaret-tower-pillar"><div class="clock-num-node" id="m-val">00</div><div class="clock-lbl-node">Mins</div></div>
+                    <div class="minaret-tower-pillar"><div class="clock-num-node" id="s-val">00</div><div class="clock-lbl-node">Secs</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section">
+            <div class="scroll-reveal-node">
+                <p class="sub-tag-line" style="margin-bottom: 45px;">Scratch to Reveal Event details</p>
+                
+                <div class="scratch-card-wrapper">
+                    <p class="scratch-title-tag">✨ Nikah Ceremony</p>
+                    <div class="scratch-container-box">
+                        <div class="scratch-secret-base">
+                            <p><strong>📅 Date:</strong> 06 June 2027 (Sunday)</p>
+                            <p><strong>⏰ Time:</strong> 10:00 PM Onwards</p>
+                            <p><strong>📍 Venue:</strong> Starling Banquet, Lucknow</p>
+                        </div>
+                        <canvas id="nikahCanvas" class="scratch-layer-canvas" width="350" height="150"></canvas>
+                    </div>
+                </div>
+
+                <div class="scratch-card-wrapper">
+                    <p class="scratch-title-tag">✨ Walimah Ceremony</p>
+                    <div class="scratch-container-box">
+                        <div class="scratch-secret-base">
+                            <p><strong>📅 Date:</strong> 07 June 2027 (Monday)</p>
+                            <p><strong>⏰ Time:</strong> 07:00 PM Onwards</p>
+                            <p><strong>📍 Venue:</strong> Starling Banquet, Lucknow</p>
+                        </div>
+                        <canvas id="walimahCanvas" class="scratch-layer-canvas" width="350" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section">
+            <div class="scroll-reveal-node">
+                <div class="family-layout">
+                    <div class="family-card">
+                        <p class="fam-role-tag">Groom Family</p>
+                        <p class="fam-main-name">Zubair Shaikh</p>
+                        <p class="fam-parents-line">Son of<br><strong>Mr. Hussain Shaikh</strong><br>& Mrs. Farida Shaikh</p>
+                    </div>
+                    <div class="family-card">
+                        <p class="fam-role-tag">Bride Family</p>
+                        <p class="fam-main-name">Afreen Khan</p>
+                        <p class="fam-parents-line">Daughter of<br><strong>Mr. Iftikhar Khan</strong><br>& Mrs. Feroza Begum</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section">
+            <div class="scroll-reveal-node">
+                <div class="venue-card-box">
+                    <div class="venue-banner-mock">STARLING BANQUET</div>
+                    <p class="venue-details-p">Ground Floor, Delta Vrindavan, MIDC Rd, near KFC, opp. MBMC Water Tank, Chs, Mahajan Wadi, Mira Road East, Thane, Maharashtra 401107.</p>
+                    <div class="venue-btn-row">
+                        <a href="https://maps.google.com" target="_blank" class="venue-action-btn">🗺️ View Route Map</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section" style="padding-bottom: 100px;">
+            <div class="scroll-reveal-node">
+                <div class="rsvp-form-master">
+                    <h2 class="rsvp-section-title">RSVP Registry</h2>
+                    <form id="rsvpFormNode">
+                        <div class="form-ctrl-group">
+                            <label>Guest Full Name</label>
+                            <input type="text" id="ins-name" class="input-field-gold" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-ctrl-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="ins-phone" class="input-field-gold" placeholder="Enter phone number" required>
+                        </div>
+                        <div class="form-ctrl-group">
+                            <label>You Are Attending From</label>
+                            <div class="selector-row-grid">
+                                <div id="opt-groom" class="selector-box-option selected-active" onclick="setSideDataBinder('Groom Side')">Groom Side</div>
+                                <div id="opt-bride" class="selector-box-option" onclick="setSideDataBinder('Bride Side')">Bride Side</div>
+                            </div>
+                        </div>
+                        <div class="form-ctrl-group">
+                            <label>You Are Attending For</label>
+                            <label class="checkbox-custom-item"><input type="checkbox" id="chk-nikah" checked> Nikah Ceremony</label>
+                            <label class="checkbox-custom-item"><input type="checkbox" id="chk-walimah"> Walimah Ceremony</label>
+                        </div>
+                        <div class="form-ctrl-group">
+                            <label>Your Response</label>
+                            <div class="selector-row-grid">
+                                <div id="opt-accept" class="selector-box-option selected-active" onclick="setResponseBinder('Joyfully Accept')">Joyfully Accept</div>
+                                <div id="opt-decline" class="selector-box-option" onclick="setResponseBinder('Regretfully Decline')">Regretfully Decline</div>
+                            </div>
+                        </div>
+                        <div class="form-ctrl-group">
+                            <label>Number of Persons</label>
+                            <div class="persons-counter-row">
+                                <div class="counter-number-node active-num" onclick="setPersonsBinder(1, this)">1</div>
+                                <div class="counter-number-node" onclick="setPersonsBinder(2, this)">2</div>
+                                <div class="counter-number-node" onclick="setPersonsBinder(3, this)">3</div>
+                                <div class="counter-number-node" onclick="setPersonsBinder(4, this)">4</div>
+                                <div class="counter-number-node" onclick="setPersonsBinder(5, this)">5</div>
+                                <div class="counter-number-node" onclick="setPersonsBinder(6, this)">6</div>
+                                <div class="counter-number-node" onclick="setPersonsBinder(7, this)">7</div>
+                            </div>
+                            <input type="number" id="ins-manual-persons" class="input-field-gold" placeholder="Or enter manually" min="1" max="50" style="margin-top: 12px; padding: 10px;">
+                        </div>
+                        <div class="form-ctrl-group">
+                            <label>Message For The Couple</label>
+                            <textarea id="ins-msg" class="input-field-gold" rows="3" placeholder="Leave your warm wishes or dua..." style="resize: none;"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn-gold">Submit RSVP</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section" style="min-height: 45vh;">
+            <div class="scroll-reveal-node">
+                <h2 class="thankyou-heading">Thank You</h2>
+                <p style="font-size: 0.85rem; letter-spacing: 2px; color: #D4AF37; text-transform: uppercase;">For being a part of our celebration</p>
+                <div class="luxury-line" style="width: 120px; margin-top: 25px;"></div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal-overlay" id="custom-modal">
+        <div class="modal-box">
+            <h3 class="modal-title" id="modal-heading">Sukriya</h3>
+            <p id="modal-text">Details logged successfully.</p>
+            <button class="modal-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
+
