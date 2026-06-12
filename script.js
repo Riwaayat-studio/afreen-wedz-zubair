@@ -159,8 +159,8 @@ document.getElementById("rsvpFormNode").addEventListener("submit", function(e) {
         message: document.getElementById("ins-msg").value
     };
 
-    // 🌟 100% HARD-LOCKED: Your brand new correct Web App URL embedded perfectly
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbwBi719LH0gCYIUf5bwKzLhEYX-8yX68tGOL2akPu1uLyzkf3FJ_NmWYdGQ5rz0Pw_H5g/exec";
+    // 🌟 HARD-LOCKED: Your newly deployed valid Web App URL
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbxdg0dyZnUUa0PiBZS4awsfrU7EtGWsyUD6C_8d2xlWU0t4xDvvku1DKYsqq1E9LFvlJA/exec";
 
     fetch(webAppUrl, {
         method: "POST",
