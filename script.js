@@ -160,7 +160,7 @@ document.getElementById("rsvpFormNode").addEventListener("submit", function(e) {
         message: document.getElementById("ins-msg").value
     };
 
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbzQanPptpeBdNuJSrhHEOkaSmnxNaNXIUDFFT3xZSUzH9qdUdjkSEW-qy3J4PA5phcK2w/exec";
+    const webAppUrl = "https://script.google.com/macros/library/d/1VLMAua4KOtBaK6Ar0GRH9NtjBFQI978LARCqqVdHfgrcz-R5b0-utweZ/3";
 
     fetch(webAppUrl, {
         method: "POST",
