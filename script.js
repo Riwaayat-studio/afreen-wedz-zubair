@@ -1,91 +1,120 @@
-const audio = document.getElementById("royal-audio");
-const mBtn = document.getElementById("music-btn");
-audio.volume = 0.45; 
+const royalAudioNode = document.getElementById("royal-audio");
+const musicControlBtn = document.getElementById("music-btn");
+if (royalAudioNode) { royalAudioNode.volume = 0.45; }
 
 let selectedSide = "Groom Side";
 let selectedResponse = "Joyfully Accept";
 let totalPersonsCount = 1;
-let audioCtx = null;
+let audioContextInstance = null;
 
 function forceAudioPlay() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (!royalAudioNode) return;
+    if (!audioContextInstance) {
+        audioContextInstance = new (window.AudioContext || window.webkitAudioContext)();
     }
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
+    if (audioContextInstance.state === 'suspended') {
+        audioContextInstance.resume();
     }
     
-    audio.play().then(() => {
-        mBtn.style.display = "flex";
-        mBtn.classList.add("music-playing");
+    royalAudioNode.play().then(() => {
+        if (musicControlBtn) {
+            musicControlBtn.style.display = "flex";
+            musicControlBtn.classList.add("music-playing");
+        }
     }).catch(err => {
-        console.log("Local audio pipeline stream bypass required.");
-        audio.muted = false;
-        audio.play();
+        console.log("Audio pipeline auto-play bypass executed.");
+        royalAudioNode.muted = false;
+        royalAudioNode.play().catch(e => console.log("Audio trigger pending user interaction."));
     });
 }
 
 function playScratchSFX() {
-    if (!audioCtx) return;
+    if (!audioContextInstance) return;
     try {
-        let size = audioCtx.sampleRate * 0.04, buf = audioCtx.createBuffer(1, size, audioCtx.sampleRate), data = buf.getChannelData(0);
+        let size = audioContextInstance.sampleRate * 0.04;
+        let buf = audioContextInstance.createBuffer(1, size, audioContextInstance.sampleRate);
+        let data = buf.getChannelData(0);
         for (let i = 0; i < size; i++) { data[i] = Math.random() * 2 - 1; }
-        let src = audioCtx.createBufferSource(); src.buffer = buf;
-        let filter = audioCtx.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = 1150;
-        let gain = audioCtx.createGain(); gain.gain.setValueAtTime(0.025, audioCtx.currentTime);
-        src.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination); src.start();
+        let src = audioContextInstance.createBufferSource();
+        src.buffer = buf;
+        let filter = audioContextInstance.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 1150;
+        let gain = audioContextInstance.createGain();
+        gain.gain.setValueAtTime(0.025, audioContextInstance.currentTime);
+        src.connect(filter); filter.connect(gain); gain.connect(audioContextInstance.destination);
+        src.start();
     } catch(e){}
 }
 
 function playGateSFX() {
-    if (!audioCtx) return;
+    if (!audioContextInstance) return;
     try {
         let freqs = [261.63, 329.63, 392.00, 523.25];
         freqs.forEach((f, i) => {
-            let osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
-            osc.type = 'triangle'; osc.frequency.value = f;
-            gain.gain.setValueAtTime(0.015, audioCtx.currentTime + i * 0.08);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + i * 0.08 + 0.45);
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            osc.start(audioCtx.currentTime + i * 0.08); osc.stop(audioCtx.currentTime + i * 0.08 + 0.45);
+            let osc = audioContextInstance.createOscillator();
+            let gain = audioContextInstance.createGain();
+            osc.type = 'triangle';
+            osc.frequency.value = f;
+            gain.gain.setValueAtTime(0.015, audioContextInstance.currentTime + i * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioContextInstance.currentTime + i * 0.08 + 0.45);
+            osc.connect(gain); gain.connect(audioContextInstance.destination);
+            osc.start(audioContextInstance.currentTime + i * 0.08);
+            osc.stop(audioContextInstance.currentTime + i * 0.08 + 0.45);
         });
     } catch(e){}
 }
 
 function handleMusicControl() {
-    if (audio.paused) { audio.play(); mBtn.classList.add("music-playing"); }
-    else { audio.pause(); mBtn.classList.remove("music-playing"); }
+    if (!royalAudioNode) return;
+    if (royalAudioNode.paused) {
+        royalAudioNode.play();
+        if (musicControlBtn) musicControlBtn.classList.add("music-playing");
+    } else {
+        royalAudioNode.pause();
+        if (musicControlBtn) musicControlBtn.classList.remove("music-playing");
+    }
 }
 
-document.getElementById("trigger-tap-node").addEventListener("click", function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    document.getElementById("envelope-gate-stage").classList.add("envelope-opened");
-    
-    const flare = document.getElementById("flare-node");
-    flare.style.opacity = "1";
-    setTimeout(() => { flare.style.opacity = "0"; }, 500);
+const triggerTapNode = document.getElementById("trigger-tap-node");
+if (triggerTapNode) {
+    triggerTapNode.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const envelopeGate = document.getElementById("envelope-gate-stage");
+        if (envelopeGate) envelopeGate.classList.add("envelope-opened");
+        
+        const flare = document.getElementById("flare-node");
+        if (flare) {
+            flare.style.opacity = "1";
+            setTimeout(() => { flare.style.opacity = "0"; }, 500);
+        }
 
-    forceAudioPlay();
-    try { playGateSFX(); } catch(e){}
+        forceAudioPlay();
+        try { playGateSFX(); } catch(err){}
 
-    setTimeout(() => {
-        document.getElementById("envelope-gate-stage").style.display = "none";
-        const portal = document.getElementById("main-canvas-portal");
-        portal.style.display = "block";
-        setTimeout(() => { 
-            portal.style.opacity = "1"; 
-            portal.style.transform = "scale(1)";
-            setupScratchEngine("nikahCanvas"); 
-            setupScratchEngine("walimahCanvas");
-            startClockEngineLoop();
-        }, 100);
-    }, 2100);
-});
+        setTimeout(() => {
+            if (envelopeGate) envelopeGate.style.display = "none";
+            const portal = document.getElementById("main-canvas-portal");
+            if (portal) {
+                portal.style.display = "block";
+                setTimeout(() => { 
+                    portal.style.opacity = "1"; 
+                    portal.style.transform = "scale(1)";
+                    setupScratchEngine("nikahCanvas"); 
+                    setupScratchEngine("walimahCanvas");
+                    startClockEngineLoop();
+                }, 100);
+            }
+        }, 2100);
+    });
+}
 
 function setupScratchEngine(id) {
-    const cvs = document.getElementById(id); const ctx = cvs.getContext("2d");
+    const cvs = document.getElementById(id);
+    if (!cvs) return;
+    const ctx = cvs.getContext("2d");
     ctx.fillStyle = "#A3863C"; ctx.fillRect(0, 0, cvs.width, cvs.height);
     ctx.fillStyle = "#FAF6EE"; ctx.font = "bold 11px Montserrat"; ctx.textAlign = "center";
     ctx.fillText("✨ SCRATCH GOLD SHEETS WITH LOVE ✨", cvs.width/2, cvs.height/2 + 5);
@@ -107,82 +136,112 @@ function setupScratchEngine(id) {
 
 function startClockEngineLoop() {
     const target = new Date("June 06, 2027 22:00:00").getTime();
+    const dVal = document.getElementById("d-val");
+    const hVal = document.getElementById("h-val");
+    const mVal = document.getElementById("m-val");
+    const sVal = document.getElementById("s-val");
+    
+    if (!dVal || !hVal || !mVal || !sVal) return;
+
     setInterval(() => {
         const diff = target - new Date().getTime();
-        document.getElementById("d-val").innerText = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-        document.getElementById("h-val").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        document.getElementById("m-val").innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-        document.getElementById("s-val").innerText = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
+        dVal.innerText = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+        hVal.innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        mVal.innerText = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+        sVal.innerText = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
     }, 1000);
 }
 
 function setSideDataBinder(side) {
     selectedSide = side;
-    document.getElementById("opt-groom").classList.remove("selected-active");
-    document.getElementById("opt-bride").classList.remove("selected-active");
-    if(side === 'Groom Side') document.getElementById("opt-groom").classList.add("selected-active");
-    else document.getElementById("opt-bride").classList.add("selected-active");
+    const optGroom = document.getElementById("opt-groom");
+    const optBride = document.getElementById("opt-bride");
+    if (optGroom) optGroom.classList.remove("selected-active");
+    if (optBride) optBride.classList.remove("selected-active");
+    if (side === 'Groom Side' && optGroom) optGroom.classList.add("selected-active");
+    if (side === 'Bride Side' && optBride) optBride.classList.add("selected-active");
 }
 
 function setResponseBinder(resp) {
     selectedResponse = resp;
-    document.getElementById("opt-accept").classList.remove("selected-active");
-    document.getElementById("opt-decline").classList.remove("selected-active");
-    if(resp === 'Joyfully Accept') document.getElementById("opt-accept").classList.add("selected-active");
-    else document.getElementById("opt-decline").classList.add("selected-active");
+    const optAccept = document.getElementById("opt-accept");
+    const optDecline = document.getElementById("opt-decline");
+    if (optAccept) optAccept.classList.remove("selected-active");
+    if (optDecline) optDecline.classList.remove("selected-active");
+    if (resp === 'Joyfully Accept' && optAccept) optAccept.classList.add("selected-active");
+    if (resp === 'Decline with Regret' && optDecline) optDecline.classList.add("selected-active");
 }
 
 function setPersonsBinder(num, elem) {
     totalPersonsCount = num;
-    document.getElementById("ins-manual-persons").value = "";
-    let row = elem.parentNode.querySelectorAll('.counter-number-node');
-    row.forEach(n => n.classList.remove('active-num'));
-    elem.classList.add('active-num');
+    const manualInput = document.getElementById("ins-manual-persons");
+    if (manualInput) manualInput.value = "";
+    if (elem && elem.parentNode) {
+        let row = elem.parentNode.querySelectorAll('.counter-number-node');
+        row.forEach(n => n.classList.remove('active-num'));
+        elem.classList.add('active-num');
+    }
 }
 
-document.getElementById("rsvpFormNode").addEventListener("submit", function(e) {
-    e.preventDefault();
-    let eventsArr = [];
-    if(document.getElementById("chk-nikah").checked) eventsArr.push("Nikah Ceremony");
-    if(document.getElementById("chk-walimah").checked) eventsArr.push("Walimah Ceremony");
-    let finalEvents = eventsArr.length > 0 ? eventsArr.join(" & ") : "None";
-    let finalPersons = document.getElementById("ins-manual-persons").value ? document.getElementById("ins-manual-persons").value : totalPersonsCount;
+const rsvpFormNode = document.getElementById("rsvpFormNode");
+if (rsvpFormNode) {
+    rsvpFormNode.addEventListener("submit", function(e) {
+        e.preventDefault();
+        let eventsArr = [];
+        const chkNikah = document.getElementById("chk-nikah");
+        const chkWalimah = document.getElementById("chk-walimah");
+        const insName = document.getElementById("ins-name");
+        const insPhone = document.getElementById("ins-phone");
+        const insManualPersons = document.getElementById("ins-manual-persons");
+        const insMsg = document.getElementById("ins-msg");
 
-    const pipelinePayload = {
-        side: selectedSide,
-        guestName: document.getElementById("ins-name").value,
-        phoneNumber: document.getElementById("ins-phone").value,
-        rsvpResponse: selectedResponse,
-        numberOfPersons: finalPersons,
-        attendingFrom: selectedSide,
-        attendingFor: finalEvents,
-        message: document.getElementById("ins-msg").value
-    };
+        if (chkNikah && chkNikah.checked) eventsArr.push("Nikah Ceremony");
+        if (chkWalimah && chkWalimah.checked) eventsArr.push("Walimah Ceremony");
+        let finalEvents = eventsArr.length > 0 ? eventsArr.join(" & ") : "None";
+        let finalPersons = (insManualPersons && insManualPersons.value) ? insManualPersons.value : totalPersonsCount;
 
-    // 🌟 HARD-LOCKED: Your newly deployed valid Web App URL
-    const webAppUrl = "const webAppUrl = "https://script.google.com/macros/s/AKfycbxC63dy9puNAcUf-poYMUJgvcwpgCZRCnGXBICCAZQbNmvtRDT7iGZcrFqU1MGh0VIUTw/exec";
-";
+        const pipelinePayload = {
+            side: selectedSide,
+            guestName: insName ? insName.value : "Not Provided",
+            phoneNumber: insPhone ? insPhone.value : "Not Provided",
+            rsvpResponse: selectedResponse,
+            numberOfPersons: finalPersons,
+            attendingFrom: selectedSide,
+            attendingFor: finalEvents,
+            message: insMsg ? insMsg.value : "No Message"
+        };
 
-    fetch(webAppUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(pipelinePayload)
-    }).then(() => {
-        openModal("JazakAllah Khair! ✨", `Wishes captured into the ${selectedSide} team database sheets!`);
-        document.getElementById("rsvpFormNode").reset();
-    }).catch(err => alert("Pipeline endpoint connection error: " + err));
-});
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbxC63dy9puNAcUf-poYMUJgvcwpgCZRCnGXBICCAZQbNmvtRDT7iGZcrFqU1MGh0VIUTw/exec";
+
+        fetch(webAppUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(pipelinePayload)
+        }).then(() => {
+            openModal("JazakAllah Khair! ✨", `Wishes captured into the ${selectedSide} team database sheets!`);
+            rsvpFormNode.reset();
+        }).catch(err => alert("Pipeline endpoint connection error: " + err));
+    });
+}
 
 function openModal(title, text) {
-    document.getElementById("modal-heading").innerText = title;
-    document.getElementById("modal-text").innerText = text;
-    document.getElementById("custom-modal").classList.add("active");
+    const mHeading = document.getElementById("modal-heading");
+    const mText = document.getElementById("modal-text");
+    const cModal = document.getElementById("custom-modal");
+    if (mHeading) mHeading.innerText = title;
+    if (mText) mText.innerText = text;
+    if (cModal) cModal.classList.add("active");
 }
-function closeModal() { document.getElementById("custom-modal").classList.remove("active"); }
+function closeModal() {
+    const cModal = document.getElementById("custom-modal");
+    if (cModal) cModal.classList.remove("active");
+}
 
 const scrollRevealElements = document.querySelectorAll('.scroll-reveal-node');
-const scrollObserverInstance = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('activated'); });
-}, { threshold: 0.1 });
-scrollRevealElements.forEach(el => scrollObserverInstance.observe(el));
+if (scrollRevealElements.length > 0) {
+    const scrollObserverInstance = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('activated'); });
+    }, { threshold: 0.1 });
+    scrollRevealElements.forEach(el => scrollObserverInstance.observe(el));
+}
