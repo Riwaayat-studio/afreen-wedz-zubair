@@ -160,7 +160,7 @@ document.getElementById("rsvpFormNode").addEventListener("submit", function(e) {
     };
 
     // 🌟 PERFECTLY LOCKED: Your genuine Executable Web App URL 
-    const webAppUrl = "https://script.google.com/macros/s/AKfycbzQanPptpeBdNuJSrhHEOkaSmnxNaNXIUDFFT3xZSUzH9qdUdjkSEW-qy3J4PA5phcK2w/exec";
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbxIuysGNGgdSbGfTb3hFsUefj4kaBk7jjL5iIcbXyMC7QKqde8vGGTiMWRf9Cglqv3w7g/exec";
 
     fetch(webAppUrl, {
         method: "POST",
