@@ -9,13 +9,12 @@ let audioCtx = null;
 
 function forceAudioPlay() {
     if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)():
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
     
-    // Direct server/local audio invocation engine
     audio.play().then(() => {
         mBtn.style.display = "flex";
         mBtn.classList.add("music-playing");
@@ -160,7 +159,8 @@ document.getElementById("rsvpFormNode").addEventListener("submit", function(e) {
         message: document.getElementById("ins-msg").value
     };
 
-    const webAppUrl = "https://script.google.com/macros/library/d/1VLMAua4KOtBaK6Ar0GRH9NtjBFQI978LARCqqVdHfgrcz-R5b0-utweZ/3";
+    // 🌟 PERFECTLY LOCKED: Your genuine Executable Web App URL 
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbzQanPptpeBdNuJSrhHEOkaSmnxNaNXIUDFFT3xZSUzH9qdUdjkSEW-qy3J4PA5phcK2w/exec";
 
     fetch(webAppUrl, {
         method: "POST",
@@ -185,4 +185,4 @@ const scrollObserverInstance = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('activated'); });
 }, { threshold: 0.1 });
 scrollRevealElements.forEach(el => scrollObserverInstance.observe(el));
-                         
+        
