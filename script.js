@@ -159,7 +159,7 @@ document.getElementById("rsvpFormNode").addEventListener("submit", function(e) {
         message: document.getElementById("ins-msg").value
     };
 
-    // 🌟 PERFECTLY LOCKED: Your genuine Executable Web App URL 
+    // 🌟 100% HARD-LOCKED: Your brand new correct Web App URL embedded perfectly
     const webAppUrl = "https://script.google.com/macros/s/AKfycbxIuysGNGgdSbGfTb3hFsUefj4kaBk7jjL5iIcbXyMC7QKqde8vGGTiMWRf9Cglqv3w7g/exec";
 
     fetch(webAppUrl, {
@@ -185,4 +185,3 @@ const scrollObserverInstance = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('activated'); });
 }, { threshold: 0.1 });
 scrollRevealElements.forEach(el => scrollObserverInstance.observe(el));
-        
